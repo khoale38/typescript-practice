@@ -1,0 +1,8 @@
+@import './breakpoints.scss';
+.test{
+ background-color: red;
+ @include mobile-down{
+    background-color: green;
+ }
+ 
+}
