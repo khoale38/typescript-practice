@@ -1,8 +1,69 @@
-@import './breakpoints.scss';
-.test{
- background-color: red;
- @include mobile-down{
-    background-color: green;
- }
- 
+@import "./breakpoints.scss";
+@import "./main.scss";
+@import "bootstrap/scss/bootstrap";
+@import url("https://fonts.googleapis.com/css2?family=Rubik+Marker+Hatch&display=swap");
+.background {
+  min-height: 100%;
+  min-width: 100%;
+  position: absolute; //TODO: tà đạo thì vcl
+  background-image: url("../assets/bg1.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.heading {
+  text-align: center;
+  text-transform: uppercase;
+  font-family: "Rubik Marker Hatch";
+  color: #ffffff;
+  font-size: 5rem;
+  @include mobile-down {
+    font-size: 2rem;
+  }
+}
+
+.customgrid {
+  display: flex;
+  justify-content: center;
+  @include mobile-down {
+    flex-direction: column;
+  }
+}
+
+.customimage {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  @include mobile-down {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.custombutton {
+  width: 10rem;
+  border-color: #ff87b2;
+  background-color: #ff87b2;
+}
+.custombutton:focus {
+  outline: none;
+  border-color: #ff87b2;
+  background-color: #ff87b2;
+  box-shadow: none;
+}
+
+.custombutton:hover {
+  border-color: #f65a83;
+  background-color: #f65a83;
+}
+
+.pinktext {
+  color: #f65a83;
+}
+
+.customtext {
+
+  @include mobile-down {
+    font-size: 1.3rem !important; 
+  }   
 }

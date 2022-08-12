@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Temp = () => {
+const Temp :React.FC = () => {
   return (
     <div>Temp</div>
   )
