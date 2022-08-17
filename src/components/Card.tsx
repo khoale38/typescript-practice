@@ -3,11 +3,14 @@ import "../styles/Home.scss";
 import { useState, useEffect } from "react";
 import Profile from "../models/Profile";
 import moment from "moment";
+import ProfileService from "../service/ProfileService";
 const Card: React.FC = () => {
   const [images, setImages] = useState([] as any);
   const [imageURLS, setImageURLs] = useState([]);
   const [form, setForm] = useState<Profile>({
     name: "",
+    mail: "",
+    phone: "",
     date: "", //moment(Date.now()).format('YYYY-MM-DD');
     message: "",
     image: "",
@@ -20,6 +23,9 @@ const Card: React.FC = () => {
       newImageUrls.push(URL.createObjectURL(image))
     );
     setImageURLs(newImageUrls);
+    toDataUrl(newImageUrls, function(myBase64:any) {
+      setForm({...form,image:myBase64})// myBase64 is the base64 string
+  });
   }, [images]);
 
   function onImageChange(e: any) {
@@ -29,13 +35,26 @@ const Card: React.FC = () => {
   const changeHandler = (event: React.ChangeEvent<HTMLElement>) => {
     setForm({
       ...form,
-      [(event.target as HTMLInputElement).name]: [(event.target as HTMLInputElement).value],
+      [(event.target as HTMLInputElement).name]: 
+        (event.target as HTMLInputElement).value,
+      
     });
   };
 
-  const showState = () => {
-    console.log(form);
-  };
+  function toDataUrl(url:any, callback:Function) {
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function() {
+        var reader = new FileReader();
+        reader.onloadend = function() {
+            callback(reader.result);
+        }
+        reader.readAsDataURL(xhr.response);
+    };
+    xhr.open('GET', url);
+    xhr.responseType = 'blob';
+    xhr.send();
+}
+
 
   return (
     <div className=" card bg-white px-5 py-5 mb-4 mx-4 pinktext">
@@ -68,6 +87,34 @@ const Card: React.FC = () => {
           }}
         />
       </div>
+      <div className="mb-3">
+        <label className="form-label fs-1 fw-bold" htmlFor="mail">
+          Email đê
+        </label>
+        <input
+          type="mail"
+          className="form-control"
+          id="mail"
+          name="mail"
+          onChange={(e) => {
+            changeHandler(e);
+          }}
+        />
+      </div>
+      <div className="mb-3">
+        <label className="form-label fs-1 fw-bold" htmlFor="phone">
+          SĐT đê
+        </label>
+        <input
+          type="phone"
+          className="form-control"
+          id="phone"
+          name="phone"
+          onChange={(e) => {
+            changeHandler(e);
+          }}
+        />
+      </div>
       <div className="mb-4">
         <label className="form-label fs-1 fw-bold" htmlFor="message">
           Lời nhắn đê
@@ -90,12 +137,12 @@ const Card: React.FC = () => {
         <div className=" d-flex justify-content-center">
           <input
             id="image"
-            name='image'
+            name="image"
             type="file"
             accept="image/*"
             onChange={(e) => {
+
               onImageChange(e);
-              changeHandler(e);
             }}
           />
         </div>
@@ -117,8 +164,8 @@ const Card: React.FC = () => {
           className="btn  btn-primary custombutton"
           type="submit"
           onClick={(e) => {
-            e.preventDefault();
-            showState();
+
+            ProfileService.create(form);
           }}
         >
           Gửi SMS
