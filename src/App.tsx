@@ -2,7 +2,7 @@
 import "./App.scss";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./routers/Home";
-import TempPage from "./routers/Temp";
+import TempPage from "./routers/Single";
 import React from "react";
 
 const  App :React.FC =() => {

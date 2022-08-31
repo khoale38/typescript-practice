@@ -1,0 +1,13 @@
+@import "./breakpoints.scss";
+@import "./main.scss";
+@import "bootstrap/scss/bootstrap";
+@import url("https://fonts.googleapis.com/css2?family=Rubik+Marker+Hatch&display=swap");
+
+.singlebackground {
+    min-height: 100%;
+    min-width: 100%;
+    position: absolute; //TODO: tà đạo thì vcl
+    background-image: url("../assets/cake.png");
+    background-position: center center;
+    object-fit: cover;
+  }
