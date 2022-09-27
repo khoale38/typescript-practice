@@ -163,7 +163,7 @@ const Card: React.FC = () => {
       </div>
       <div className="d-flex justify-content-center">
         <button
-          className="btn   custombutton"
+          className="btn font-text btn-lg  custombutton  "
           type="submit"
           onClick={(e) => {
             ProfileService.create(form);

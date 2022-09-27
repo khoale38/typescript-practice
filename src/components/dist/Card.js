@@ -102,7 +102,7 @@ var Card = function () {
                     } })),
             react_1["default"].createElement("div", { className: "mb-3 customgrid " }, imageURLS.map(function (imageSrc) { return (react_1["default"].createElement("img", { className: "customimage my-3", src: imageSrc, alt: "not found", width: "250px", height: "250px" })); }))),
         react_1["default"].createElement("div", { className: "d-flex justify-content-center" },
-            react_1["default"].createElement("button", { className: "btn   custombutton", type: "submit", onClick: function (e) {
+            react_1["default"].createElement("button", { className: "btn font-text btn-lg  custombutton  ", type: "submit", onClick: function (e) {
                     ProfileService_1["default"].create(form);
                 } }, "Save Record"))));
 };
