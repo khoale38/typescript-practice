@@ -1,8 +1,7 @@
-html,
-body {
+html, body, #root, .App  {
  height: 100%;
  width: 100%;
-  overflow-x: hidden;
+
 }
 
 * {
@@ -48,6 +47,3 @@ ol {
   visibility: hidden;
 }
 
-.overflow-hidden {
-  height: 100vh;
-}

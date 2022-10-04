@@ -14,6 +14,7 @@
     "axios": "^0.27.2",
     "bootstrap": "^5.2.0",
     "cors": "^2.8.5",
+    "giphy-api": "^2.0.2",
     "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",

@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/Home.scss";
+import "../styles/Input.scss";
 import { useState, useEffect } from "react";
 import Profile from "../models/Profile";
 import moment from "moment";

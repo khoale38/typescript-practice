@@ -19,7 +19,7 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
 };
 exports.__esModule = true;
 var react_1 = require("react");
-require("../styles/Home.scss");
+require("../styles/Input.scss");
 var react_2 = require("react");
 var moment_1 = require("moment");
 var ProfileService_1 = require("../service/ProfileService");
