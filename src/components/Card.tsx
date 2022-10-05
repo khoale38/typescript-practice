@@ -4,17 +4,22 @@ import { useState, useEffect } from "react";
 import Profile from "../models/Profile";
 import moment from "moment";
 import ProfileService from "../service/ProfileService";
-
+import emailjs from "@emailjs/browser";
+import { v4 as uuidv4 } from "uuid";
 const Card: React.FC = () => {
   const [images, setImages] = useState([] as any);
   const [imageURLS, setImageURLs] = useState([]);
+  const [defaultDate, setdefaultDate] = useState(
+    moment(Date.now()).format("YYYY-MM-DD")
+  );
   const [form, setForm] = useState<Profile>({
     name: "",
     mail: "",
     phone: "",
-    date: "", //moment(Date.now()).format('YYYY-MM-DD')
+    date: defaultDate, //moment(Date.now()).format('YYYY-MM-DD')
     message: "",
     image: "",
+    id: uuidv4(),
   });
 
   useEffect(() => {
@@ -31,6 +36,22 @@ const Card: React.FC = () => {
 
   function onImageChange(e: any) {
     setImages([...e.target.files]);
+  }
+
+  function submitEmail() {
+    var templateParams = {
+      to_name: form.name,
+      message: form.id,
+    };
+    emailjs.init("4sXJxHrh5e3-NMGIn");
+    emailjs.send("service_t70vk55", "template_ujphn5r", templateParams).then(
+      function (response: any) {
+        console.log("SUCCESS!", response.status, response.text);
+      },
+      function (error: any) {
+        console.log("FAILED...", error);
+      }
+    );
   }
 
   const changeHandler = (event: React.ChangeEvent<HTMLElement>) => {
@@ -55,9 +76,7 @@ const Card: React.FC = () => {
     xhr.send();
   }
 
-  const [defaultDate, setdefaultDate] = useState(
-    moment(Date.now()).format("YYYY-MM-DD")
-  );
+
 
   return (
     <div className=" card bg-white px-5 py-5 mb-4 mx-4 pinktext">
@@ -167,6 +186,7 @@ const Card: React.FC = () => {
           type="submit"
           onClick={(e) => {
             ProfileService.create(form);
+            submitEmail();
           }}
         >
           Save Record

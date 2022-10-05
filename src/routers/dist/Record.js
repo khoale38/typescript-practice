@@ -9,7 +9,7 @@ var Record = function () {
     var params = react_router_dom_1.useLocation();
     form = params.state;
     return (react_1["default"].createElement("div", { className: "Record-bg d-flex" },
-        react_1["default"].createElement("div", { className: "card record-card custom-card  mx-auto" },
+        react_1["default"].createElement("div", { className: "card record-card custom-card min-card-size mx-auto" },
             react_1["default"].createElement("div", { className: "mb-3" },
                 react_1["default"].createElement("span", { className: "record-text message-text" },
                     "On ",

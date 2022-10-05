@@ -23,17 +23,21 @@ require("../styles/Input.scss");
 var react_2 = require("react");
 var moment_1 = require("moment");
 var ProfileService_1 = require("../service/ProfileService");
+var browser_1 = require("@emailjs/browser");
+var uuid_1 = require("uuid");
 var Card = function () {
     var _a = react_2.useState([]), images = _a[0], setImages = _a[1];
     var _b = react_2.useState([]), imageURLS = _b[0], setImageURLs = _b[1];
-    var _c = react_2.useState({
+    var _c = react_2.useState(moment_1["default"](Date.now()).format("YYYY-MM-DD")), defaultDate = _c[0], setdefaultDate = _c[1];
+    var _d = react_2.useState({
         name: "",
         mail: "",
         phone: "",
-        date: "",
+        date: defaultDate,
         message: "",
-        image: ""
-    }), form = _c[0], setForm = _c[1];
+        image: "",
+        id: uuid_1.v4()
+    }), form = _d[0], setForm = _d[1];
     react_2.useEffect(function () {
         if (images.length < 1)
             return;
@@ -48,6 +52,18 @@ var Card = function () {
     }, [images]);
     function onImageChange(e) {
         setImages(__spreadArrays(e.target.files));
+    }
+    function submitEmail() {
+        var templateParams = {
+            to_name: form.name,
+            message: form.id
+        };
+        browser_1["default"].init("4sXJxHrh5e3-NMGIn");
+        browser_1["default"].send("service_t70vk55", "template_ujphn5r", templateParams).then(function (response) {
+            console.log("SUCCESS!", response.status, response.text);
+        }, function (error) {
+            console.log("FAILED...", error);
+        });
     }
     var changeHandler = function (event) {
         var _a;
@@ -67,7 +83,6 @@ var Card = function () {
         xhr.responseType = "blob";
         xhr.send();
     }
-    var _d = react_2.useState(moment_1["default"](Date.now()).format("YYYY-MM-DD")), defaultDate = _d[0], setdefaultDate = _d[1];
     return (react_1["default"].createElement("div", { className: " card bg-white px-5 py-5 mb-4 mx-4 pinktext" },
         react_1["default"].createElement("div", { className: "mb-3" },
             react_1["default"].createElement("label", { className: "form-label fs-1 fw-bold font-text", htmlFor: "name" }, "Your name"),
@@ -104,6 +119,7 @@ var Card = function () {
         react_1["default"].createElement("div", { className: "d-flex justify-content-center" },
             react_1["default"].createElement("button", { className: "btn font-text btn-lg  custombutton  ", type: "submit", onClick: function (e) {
                     ProfileService_1["default"].create(form);
+                    submitEmail();
                 } }, "Save Record"))));
 };
 exports["default"] = Card;

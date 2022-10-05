@@ -2,9 +2,6 @@
   height: 100%;
   width: 100%;
   background-image: url("../assets/wall1.png");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
 }
 
 .custom-card {
@@ -46,4 +43,25 @@
 
 .text-color:hover {
   color: #6e6a6a;
+}
+
+.btn-grad2 {
+  background-image: linear-gradient(to right, #C33764 0%, #1D2671 51%, #C33764 100%);
+  padding: 10px 20px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  display: block;
+}
+
+.btn-grad2:hover {
+  background-position: right center;
+  /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
 }

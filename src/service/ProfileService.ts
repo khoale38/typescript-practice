@@ -11,7 +11,7 @@ class ProfileService {
     params.append("mail", data.mail || "");
     params.append("message", data.message || "");
     params.append("image", data.image || "");
-
+    params.append("id", data.id || "");
     console.log("params", params);
 
     return await http

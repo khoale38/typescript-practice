@@ -10,7 +10,7 @@ const Record = () => {
   form = params.state;
   return (
     <div className="Record-bg d-flex">
-      <div className="card record-card custom-card  mx-auto">
+      <div className="card record-card custom-card min-card-size mx-auto">
         <div className="mb-3">
           <span className="record-text message-text">
             On <b className="yellow-voyage">{form.date?.slice(0, 10)} </b>,{" "}

@@ -52,6 +52,7 @@ var ProfileService = /** @class */ (function () {
                         params.append("mail", data.mail || "");
                         params.append("message", data.message || "");
                         params.append("image", data.image || "");
+                        params.append("id", data.id || "");
                         console.log("params", params);
                         return [4 /*yield*/, http_common_1["default"]
                                 .post("/image", params)

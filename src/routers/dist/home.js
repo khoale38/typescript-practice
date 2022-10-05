@@ -78,6 +78,7 @@ var Main = function () {
                 react_1["default"].createElement("div", { className: "form-label  text-align" }, "Input Record Code"),
                 react_1["default"].createElement("input", { ref: inputRef, type: "email", className: "form-control", id: "exampleInputEmail1", "aria-describedby": "emailHelp" })),
             react_1["default"].createElement("button", { className: "btn btn-grad mb-3", type: "button", onClick: onClickHandle }, "Submit"),
+            react_1["default"].createElement("button", { className: "btn btn-grad2 mb-3", type: "button", onClick: function () { return navigate('/input'); } }, "Go Create Record"),
             react_1["default"].createElement("a", { href: "/gif", className: "mx-auto text-color" },
                 "I am feeling lucky today - Get a random Gif",
                 " "))));
