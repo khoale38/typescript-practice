@@ -14,3 +14,39 @@
     align-self: center;
 
 }
+
+.text-align{
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+         
+.btn-grad {
+  background-image: linear-gradient(to right, #000000 0%, #434343  51%, #000000  100%);
+  padding: 10px 20px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;            
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  display: block;
+}
+
+.btn-grad:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
+
+.text-color{
+
+color: #000000;
+}
+.text-color:hover {
+  color:#6e6a6a;
+}
