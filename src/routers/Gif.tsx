@@ -24,7 +24,8 @@ const Temp: React.FC = () => {
   }, []);
 
   return (
-    <div className="">
+    <div >
+      <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"/> 
       {gif != "" && imgsLoaded ? (
         <img src={gif} className="customgif" />
       ) : (
