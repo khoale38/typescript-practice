@@ -4,11 +4,12 @@ import "../styles/Home.scss";
 import { useRef, useState } from "react";
 import ProfileService from "../service/ProfileService";
 import Profile from "../models/Profile";
-import { useAlert } from "react-alert";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Main: React.FC = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
-  const alert = useAlert();
+
   let form: Profile;
   async function axiosTest() {
     // create a promise for the axios request
@@ -17,16 +18,31 @@ const Main: React.FC = () => {
     // using .then, create a new promise which extracts the data
     const dataPromise: Profile = await promise.then((response) => response);
     form = dataPromise;
-
   }
   async function onClickHandle(e: any) {
     await axiosTest();
-
+    console.log(form)
     if (inputRef.current!.value == "") {
-      alert.error("Please fullfill your Record code" );
+      toast.error("Please full fill your Record code", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       return;
     } else if (form === undefined) {
-      alert.error("Record code is invalid");
+      toast.error("Record code is invalid", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       return;
     } else {
       navigate("/record", {
@@ -42,6 +58,7 @@ const Main: React.FC = () => {
 
   return (
     <div className="Home-bg d-flex">
+      <ToastContainer />
       <div className="card custom-card mx-auto">
         <div className="mb-3 ">
           <div className="form-label  text-align">Input Record Code</div>

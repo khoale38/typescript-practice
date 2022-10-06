@@ -41,11 +41,11 @@ var react_router_dom_1 = require("react-router-dom");
 require("../styles/Home.scss");
 var react_2 = require("react");
 var ProfileService_1 = require("../service/ProfileService");
-var react_alert_1 = require("react-alert");
+var react_toastify_1 = require("react-toastify");
+require("react-toastify/dist/ReactToastify.css");
 var Main = function () {
     var inputRef = react_2.useRef(null);
     var navigate = react_router_dom_1.useNavigate();
-    var alert = react_alert_1.useAlert();
     var form;
     function axiosTest() {
         return __awaiter(this, void 0, void 0, function () {
@@ -70,12 +70,29 @@ var Main = function () {
                     case 0: return [4 /*yield*/, axiosTest()];
                     case 1:
                         _a.sent();
+                        console.log(form);
                         if (inputRef.current.value == "") {
-                            alert.error("Please fullfill your Record code");
+                            react_toastify_1.toast.error("Please full fill your Record code", {
+                                position: "top-center",
+                                autoClose: 5000,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined
+                            });
                             return [2 /*return*/];
                         }
                         else if (form === undefined) {
-                            alert.error("Record code is invalid");
+                            react_toastify_1.toast.error("Record code is invalid", {
+                                position: "top-center",
+                                autoClose: 5000,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined
+                            });
                             return [2 /*return*/];
                         }
                         else {
@@ -94,6 +111,7 @@ var Main = function () {
         });
     }
     return (react_1["default"].createElement("div", { className: "Home-bg d-flex" },
+        react_1["default"].createElement(react_toastify_1.ToastContainer, null),
         react_1["default"].createElement("div", { className: "card custom-card mx-auto" },
             react_1["default"].createElement("div", { className: "mb-3 " },
                 react_1["default"].createElement("div", { className: "form-label  text-align" }, "Input Record Code"),

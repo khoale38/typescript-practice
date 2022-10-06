@@ -7,7 +7,8 @@ import ProfileService from "../service/ProfileService";
 import emailjs from "@emailjs/browser";
 import { v4 as uuidv4 } from "uuid";
 import { useNavigate } from "react-router-dom";
-import { useAlert } from "react-alert";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Card: React.FC = () => {
   const [images, setImages] = useState([] as any);
@@ -15,7 +16,7 @@ const Card: React.FC = () => {
   const [defaultDate, setdefaultDate] = useState(
     moment(Date.now()).format("YYYY-MM-DD")
   );
-  const alert = useAlert();
+  const [btnDisable, setbtnDisalbe] = useState(false);
   const navigate = useNavigate();
   const [form, setForm] = useState<Profile>({
     name: "",
@@ -43,17 +44,43 @@ const Card: React.FC = () => {
     setImages([...e.target.files]);
   }
 
-  function onSubmit() {
+  const delay = (ms: any) => new Promise((resolve) => setTimeout(resolve, ms));
+
+  async function onSubmit() {
     console.log(form);
     if (
-      (form.name== "" || form.date == ""|| form.mail== "" || form.message== "" || form.phone== "") 
+      form.name == "" ||
+      form.date == "" ||
+      form.mail == "" ||
+      form.message == "" ||
+      form.phone == ""
     ) {
-      alert.error("Create record fail, please fullfill information");
+      toast.error("Create record fail, please full fill information", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } else {
       ProfileService.create(form);
       submitEmail();
-      alert.success("Create record success, check your email for record code");
+      toast.info("Create record success, check your email for record code", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      setbtnDisalbe(!btnDisable);
+      await delay(2000);
+
       navigate("/");
+      setbtnDisalbe(!btnDisable);
     }
   }
 
@@ -97,6 +124,7 @@ const Card: React.FC = () => {
 
   return (
     <div className=" card bg-white px-5 py-5 mb-4 mx-4 pinktext">
+      <ToastContainer />
       <div className="mb-3">
         <label className="form-label fs-1 fw-bold font-text" htmlFor="name">
           Your name
@@ -199,13 +227,14 @@ const Card: React.FC = () => {
       </div>
       <div className="d-flex justify-content-center">
         <button
+          disabled={btnDisable}
           className="btn font-text btn-lg  custombutton  "
           type="submit"
           onClick={(e) => {
             onSubmit();
           }}
         >
-          Save Record
+          {!btnDisable ? "Save Record" : "Loading..."}
         </button>
       </div>
     </div>
