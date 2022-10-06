@@ -61,7 +61,7 @@ var Temp = function () {
         fetchGif();
     }, []);
     return (react_1["default"].createElement("div", null,
-        react_1["default"].createElement("meta", { "http-equiv": "Content-Security-Policy", content: "upgrade-insecure-requests" }),
+        react_1["default"].createElement("meta", { "http-Equiv": "Content-Security-Policy", content: "upgrade-insecure-requests" }),
         gif != "" && imgsLoaded ? (react_1["default"].createElement("img", { src: gif, className: "customgif" })) : (react_1["default"].createElement("div", { className: "black-background " },
             react_1["default"].createElement("h1", { className: "centered" }, "Loading...")))));
 };
