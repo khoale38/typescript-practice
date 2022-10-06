@@ -20,7 +20,7 @@
 }
 
 .yellow-voyage {
-  color: #C6A522;
+  color: #c6a522;
 }
 
 .message-text {
@@ -30,4 +30,10 @@
 
 .min-card-size {
   min-width: 450px;
+}
+
+.ctm-img {
+  display: block;
+  margin-right: auto !important;
+  margin-left: auto !important;
 }

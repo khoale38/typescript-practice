@@ -26,6 +26,6 @@ var Record = function () {
                         "\""))),
             form.image != "" ? (react_1["default"].createElement("div", { className: "record-text " },
                 "And you choose this image for this occasion :",
-                react_1["default"].createElement("img", { className: "mt-3 ", src: form.image }))) : (react_1["default"].createElement("div", null)))));
+                react_1["default"].createElement("img", { className: "mt-3 ctm-img", src: form.image }))) : (react_1["default"].createElement("div", null)))));
 };
 exports["default"] = Record;

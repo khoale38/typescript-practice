@@ -41,9 +41,11 @@ var react_router_dom_1 = require("react-router-dom");
 require("../styles/Home.scss");
 var react_2 = require("react");
 var ProfileService_1 = require("../service/ProfileService");
+var react_alert_1 = require("react-alert");
 var Main = function () {
     var inputRef = react_2.useRef(null);
     var navigate = react_router_dom_1.useNavigate();
+    var alert = react_alert_1.useAlert();
     var form;
     function axiosTest() {
         return __awaiter(this, void 0, void 0, function () {
@@ -62,14 +64,33 @@ var Main = function () {
         });
     }
     function onClickHandle(e) {
-        axiosTest();
-        navigate("/record", {
-            state: {
-                date: form.date,
-                message: form.message,
-                name: form.name,
-                image: form.image
-            }
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, axiosTest()];
+                    case 1:
+                        _a.sent();
+                        if (inputRef.current.value == "") {
+                            alert.error("Please fullfill your Record code");
+                            return [2 /*return*/];
+                        }
+                        else if (form === undefined) {
+                            alert.error("Record code is invalid");
+                            return [2 /*return*/];
+                        }
+                        else {
+                            navigate("/record", {
+                                state: {
+                                    date: form.date,
+                                    message: form.message,
+                                    name: form.name,
+                                    image: form.image
+                                }
+                            });
+                        }
+                        return [2 /*return*/];
+                }
+            });
         });
     }
     return (react_1["default"].createElement("div", { className: "Home-bg d-flex" },
@@ -78,7 +99,7 @@ var Main = function () {
                 react_1["default"].createElement("div", { className: "form-label  text-align" }, "Input Record Code"),
                 react_1["default"].createElement("input", { ref: inputRef, type: "email", className: "form-control", id: "exampleInputEmail1", "aria-describedby": "emailHelp" })),
             react_1["default"].createElement("button", { className: "btn btn-grad mb-3", type: "button", onClick: onClickHandle }, "Submit"),
-            react_1["default"].createElement("button", { className: "btn btn-grad2 mb-3", type: "button", onClick: function () { return navigate('/input'); } }, "Go Create Record"),
+            react_1["default"].createElement("button", { className: "btn btn-grad2 mb-3", type: "button", onClick: function () { return navigate("/input"); } }, "Go Create Record"),
             react_1["default"].createElement("a", { href: "/gif", className: "mx-auto text-color" },
                 "I am feeling lucky today - Get a random Gif",
                 " "))));

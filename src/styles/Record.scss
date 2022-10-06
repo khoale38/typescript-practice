@@ -16,22 +16,26 @@
   padding: 2rem;
 }
 
-
-.record-text{
+.record-text {
   font-family: "Roboto";
   font-size: 1.15rem;
 }
 
-.yellow-voyage{
-  color: #C6A522;
+.yellow-voyage {
+  color: #c6a522;
 }
 
-
-.message-text{
+.message-text {
   font-size: 1.25rem;
   text-align: center;
 }
 
-.min-card-size{
+.min-card-size {
   min-width: 450px;
+}
+
+.ctm-img {
+  display: block;
+  margin-right: auto !important;
+  margin-left: auto !important;
 }

@@ -15,17 +15,17 @@
     "axios": "^0.27.2",
     "bootstrap": "^5.2.0",
     "cors": "^2.8.5",
-    "emailjs": "^4.0.1",
     "emailjs-com": "^3.2.0",
     "giphy-api": "^2.0.2",
     "moment": "^2.29.4",
     "react": "^18.2.0",
+    "react-alert": "^7.0.3",
+    "react-alert-template-basic": "^1.0.2",
     "react-bootstrap": "^2.5.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.3.0",
+    "react-router-dom": "^6.4.2",
     "react-scripts": "5.0.1",
     "sass": "^1.54.4",
-    "smtpjs": "^0.0.1",
     "typescript": "^4.7.4",
     "uuidv4": "^6.2.13",
     "web-vitals": "^2.1.4"
@@ -53,5 +53,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/react-alert": "^7.0.2"
   }
 }

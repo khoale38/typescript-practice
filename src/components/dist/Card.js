@@ -25,10 +25,14 @@ var moment_1 = require("moment");
 var ProfileService_1 = require("../service/ProfileService");
 var browser_1 = require("@emailjs/browser");
 var uuid_1 = require("uuid");
+var react_router_dom_1 = require("react-router-dom");
+var react_alert_1 = require("react-alert");
 var Card = function () {
     var _a = react_2.useState([]), images = _a[0], setImages = _a[1];
     var _b = react_2.useState([]), imageURLS = _b[0], setImageURLs = _b[1];
     var _c = react_2.useState(moment_1["default"](Date.now()).format("YYYY-MM-DD")), defaultDate = _c[0], setdefaultDate = _c[1];
+    var alert = react_alert_1.useAlert();
+    var navigate = react_router_dom_1.useNavigate();
     var _d = react_2.useState({
         name: "",
         mail: "",
@@ -52,6 +56,18 @@ var Card = function () {
     }, [images]);
     function onImageChange(e) {
         setImages(__spreadArrays(e.target.files));
+    }
+    function onSubmit() {
+        console.log(form);
+        if ((form.name == "" || form.date == "" || form.mail == "" || form.message == "" || form.phone == "")) {
+            alert.error("Create record fail, please fullfill information");
+        }
+        else {
+            ProfileService_1["default"].create(form);
+            submitEmail();
+            alert.success("Create record success, check your email for record code");
+            navigate("/");
+        }
     }
     function submitEmail() {
         var templateParams = {
@@ -118,8 +134,7 @@ var Card = function () {
             react_1["default"].createElement("div", { className: "mb-3 customgrid " }, imageURLS.map(function (imageSrc) { return (react_1["default"].createElement("img", { className: "customimage my-3", src: imageSrc, alt: "not found", width: "250px", height: "250px" })); }))),
         react_1["default"].createElement("div", { className: "d-flex justify-content-center" },
             react_1["default"].createElement("button", { className: "btn font-text btn-lg  custombutton  ", type: "submit", onClick: function (e) {
-                    ProfileService_1["default"].create(form);
-                    submitEmail();
+                    onSubmit();
                 } }, "Save Record"))));
 };
 exports["default"] = Card;

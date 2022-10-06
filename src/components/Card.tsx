@@ -6,12 +6,17 @@ import moment from "moment";
 import ProfileService from "../service/ProfileService";
 import emailjs from "@emailjs/browser";
 import { v4 as uuidv4 } from "uuid";
+import { useNavigate } from "react-router-dom";
+import { useAlert } from "react-alert";
+
 const Card: React.FC = () => {
   const [images, setImages] = useState([] as any);
   const [imageURLS, setImageURLs] = useState([]);
   const [defaultDate, setdefaultDate] = useState(
     moment(Date.now()).format("YYYY-MM-DD")
   );
+  const alert = useAlert();
+  const navigate = useNavigate();
   const [form, setForm] = useState<Profile>({
     name: "",
     mail: "",
@@ -36,6 +41,20 @@ const Card: React.FC = () => {
 
   function onImageChange(e: any) {
     setImages([...e.target.files]);
+  }
+
+  function onSubmit() {
+    console.log(form);
+    if (
+      (form.name== "" || form.date == ""|| form.mail== "" || form.message== "" || form.phone== "") 
+    ) {
+      alert.error("Create record fail, please fullfill information");
+    } else {
+      ProfileService.create(form);
+      submitEmail();
+      alert.success("Create record success, check your email for record code");
+      navigate("/");
+    }
   }
 
   function submitEmail() {
@@ -75,8 +94,6 @@ const Card: React.FC = () => {
     xhr.responseType = "blob";
     xhr.send();
   }
-
-
 
   return (
     <div className=" card bg-white px-5 py-5 mb-4 mx-4 pinktext">
@@ -185,8 +202,7 @@ const Card: React.FC = () => {
           className="btn font-text btn-lg  custombutton  "
           type="submit"
           onClick={(e) => {
-            ProfileService.create(form);
-            submitEmail();
+            onSubmit();
           }}
         >
           Save Record

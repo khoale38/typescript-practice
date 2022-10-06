@@ -4,10 +4,11 @@ import "../styles/Home.scss";
 import { useRef, useState } from "react";
 import ProfileService from "../service/ProfileService";
 import Profile from "../models/Profile";
-
+import { useAlert } from "react-alert";
 const Main: React.FC = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
+  const alert = useAlert();
   let form: Profile;
   async function axiosTest() {
     // create a promise for the axios request
@@ -16,18 +17,27 @@ const Main: React.FC = () => {
     // using .then, create a new promise which extracts the data
     const dataPromise: Profile = await promise.then((response) => response);
     form = dataPromise;
-  }
-  function onClickHandle(e: any) {
-    axiosTest();
 
-    navigate("/record", {
-      state: { 
-        date: form.date,
-        message: form.message,
-        name: form.name,
-        image: form.image,
-      },
-    });
+  }
+  async function onClickHandle(e: any) {
+    await axiosTest();
+
+    if (inputRef.current!.value == "") {
+      alert.error("Please fullfill your Record code" );
+      return;
+    } else if (form === undefined) {
+      alert.error("Record code is invalid");
+      return;
+    } else {
+      navigate("/record", {
+        state: {
+          date: form.date,
+          message: form.message,
+          name: form.name,
+          image: form.image,
+        },
+      });
+    }
   }
 
   return (
@@ -50,7 +60,11 @@ const Main: React.FC = () => {
         >
           Submit
         </button>
-        <button className="btn btn-grad2 mb-3" type="button" onClick={()=> navigate('/input')}>
+        <button
+          className="btn btn-grad2 mb-3"
+          type="button"
+          onClick={() => navigate("/input")}
+        >
           Go Create Record
         </button>
         <a href="/gif" className="mx-auto text-color">

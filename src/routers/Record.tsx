@@ -23,7 +23,7 @@ const Record = () => {
         {form.image != "" ? (
           <div className="record-text ">
             And you choose this image for this occasion :
-            <img className="mt-3 " src={form.image!} />
+            <img className="mt-3 ctm-img" src={form.image!} />
           </div>
         ) : (
           <div></div>
