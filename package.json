@@ -3,9 +3,6 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
-  "engines": {
-    "@react": "18.2.0"
-  },
   "dependencies": {
     "@emailjs/browser": "^3.7.0",
     "@testing-library/jest-dom": "^5.16.5",
