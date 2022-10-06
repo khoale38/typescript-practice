@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": "16.x"
+    "@react": "18.2.0"
   },
   "dependencies": {
     "@emailjs/browser": "^3.7.0",
