@@ -38,22 +38,23 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 var react_1 = require("react");
 require("../styles/Gif.scss");
-var giphy = require("giphy-api")("LuK13keeucvx3ZeicP3o1Ll8gWIp0NWI");
+var js_fetch_api_1 = require("@giphy/js-fetch-api");
 var Temp = function () {
     var _a = react_1.useState(false), imgsLoaded = _a[0], setImgsLoaded = _a[1];
-    var _b = react_1.useState(""), gif = _b[0], setGif = _b[1];
+    var _b = react_1.useState(), gif = _b[0], setGif = _b[1];
     react_1.useEffect(function () {
         var fetchGif = function () { return __awaiter(void 0, void 0, void 0, function () {
+            var gf, data;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, giphy.random({ limit: 1, rating: "g", fmt: "json" }, function (err, res) {
-                            console.log(res);
-                            console.log(res.data.images.original.url);
-                            setGif(res.data.images.original.url);
-                            setImgsLoaded(true);
-                        })];
+                    case 0:
+                        gf = new js_fetch_api_1.GiphyFetch("LuK13keeucvx3ZeicP3o1Ll8gWIp0NWI");
+                        return [4 /*yield*/, gf.random({ limit: 1 })];
                     case 1:
-                        _a.sent();
+                        data = _a.sent();
+                        console.log(data);
+                        setGif(data.data.images.original.url);
+                        setImgsLoaded(true);
                         return [2 /*return*/];
                 }
             });
