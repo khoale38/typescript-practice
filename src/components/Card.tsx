@@ -88,6 +88,7 @@ const Card: React.FC = () => {
     var templateParams = {
       to_name: form.name,
       message: form.id,
+      receive_name:form.mail
     };
     emailjs.init("4sXJxHrh5e3-NMGIn");
     emailjs.send("service_t70vk55", "template_ujphn5r", templateParams).then(

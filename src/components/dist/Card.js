@@ -143,7 +143,8 @@ var Card = function () {
     function submitEmail() {
         var templateParams = {
             to_name: form.name,
-            message: form.id
+            message: form.id,
+            receive_name: form.mail
         };
         browser_1["default"].init("4sXJxHrh5e3-NMGIn");
         browser_1["default"].send("service_t70vk55", "template_ujphn5r", templateParams).then(function (response) {
