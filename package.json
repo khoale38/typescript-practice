@@ -3,7 +3,10 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
- 
+  "engines": {
+    "node": "16.15.1",
+    "npm": "8.5.5"
+  },
   "dependencies": {
     "@emailjs/browser": "^3.7.0",
     "@testing-library/jest-dom": "^5.16.5",
