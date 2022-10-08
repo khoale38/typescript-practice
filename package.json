@@ -3,6 +3,9 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "16.16.0"
+  },
   "dependencies": {
     "@emailjs/browser": "^3.7.0",
     "@giphy/js-fetch-api": "^4.4.0",
@@ -26,6 +29,7 @@
     "react-scripts": "5.0.1",
     "react-toastify": "^9.0.8",
     "sass": "^1.54.4",
+    "serve": "^14.0.1",
     "typescript": "^4.7.4",
     "uuidv4": "^6.2.13",
     "web-vitals": "^2.1.4"
